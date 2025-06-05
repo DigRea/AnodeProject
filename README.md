@@ -1,2 +1,1 @@
-# AnodeProject
 Anode Project
