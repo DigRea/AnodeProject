@@ -1,5 +1,5 @@
 body
-{ background: url(../images/bgnc.png) fixed black top center no-repeat;
+{ background: /*url(../images/bgnc.png)*/ url(../images/wallpaper.jpg) fixed black top center no-repeat;
   background-size: cover; overflow: scroll; }
 @font-face
 { src: url("../fonts/play.ttf") format('truetype');
@@ -12,21 +12,18 @@ body
 #innblock
 { width: 998px; text-align: left; height: 100%; position: relative;
   -moz-user-select: none; -webkit-user-select: none; user-select: none;
-  -ms-user-select: none; -o-user-select: none; display: flex; gap: 7px; }
+  -ms-user-select: none; -o-user-select: none; display: flex; gap: 11px; }
 .blockone
-{ display: flex; flex-direction: column; width: 296px; gap: 7px; box-sizing: border-box; }
+{ display: flex; flex-direction: column; width: 270px; gap: 7px; box-sizing: border-box; }
 .blocktwo
-{ display: flex; flex-direction: column; width: 695px; gap: 7px; box-sizing: border-box; }
-.subblock
-{ background-color: rgba(255, 255, 255, 0.8); border-radius: 5px; padding: 15px;
-  box-sizing: border-box; }
+{ display: flex; flex-direction: column; width: 717px; gap: 7px; box-sizing: border-box; }
 
-.sitelogo
-{ height: 150px; }
-.srchline
-{ height: 100px; }
-.mainmenu
-{ flex-grow: 1; }
+#sitelogo
+{ height: 120px;  border-radius: 5px; padding: 5px; box-sizing: border-box;}
+#srchline
+{ height: 50px; background-color: rgba(255, 255, 255, 0.8); border-radius: 5px; padding: 15px; box-sizing: border-box;}
+#mainmenu
+{ background-color: rgba(255, 255, 255, 0.8); border-radius: 5px; padding: 15px; box-sizing: border-box; }
 
 #headtape
 { display: flex; flex-direction: row; gap: 7px; padding: 0; background-color: transparent !important; }
@@ -39,7 +36,7 @@ body
 .headexit
 { width: 150px; background-color: rgba(255, 255, 255, 0.8); border-radius: 5px; padding: 10px; box-sizing: border-box; flex-shrink: 0; }
 
-.maincont
-{ min-height: 400px; flex-grow: 1; }
-.foottape
-{ height: 80px; }
+#maincont
+{ min-height: 400px; background-color: rgba(255, 255, 255, 0.8); border-radius: 5px; padding: 15px; box-sizing: border-box; }
+#foottape
+{ height: 80px; background-color: rgba(255, 255, 255, 0.8); border-radius: 5px; padding: 15px; box-sizing: border-box; }
