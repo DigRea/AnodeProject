@@ -26,7 +26,7 @@ body
 { height: 34px; background-color: black; border: 1px solid #545454; padding: 5px;
   box-sizing: border-box;}
 #mainmenu
-{ background-color: black; border-radius: 0 0 5px 5px; padding: 15px;
+{ background-color: black; border-radius: 0 0 7px 7px; padding: 15px;
   box-sizing: border-box; border: 2px solid #545454; }
 
 #headtape
@@ -35,8 +35,8 @@ body
 .headhome
 { width: 42px; background-color: black; padding: 10px; display: flex;
   justify-content: center; align-items: center; height: 36px;
-  border-radius: 6px 0 0 0; box-sizing: border-box; flex-shrink: 0;
-  border: 3px solid chocolate; }
+  border-radius: 7px 0 0 0; box-sizing: border-box; flex-shrink: 0;
+  border: 3px solid chocolate; overflow: hidden; position: relative; }
 .headline
 { width: 411px; background-color: black; padding: 10px; color: chocolate;
   box-sizing: border-box; flex-shrink: 0; border: 3px solid chocolate; }
@@ -44,19 +44,26 @@ body
 { width: 200px; background-color: black; padding: 10px; color: chocolate;
   box-sizing: border-box; flex-shrink: 0; border: 3px solid chocolate; }
 .headexit
-{ width: 42px; background-color: black; padding: 10px;
-  border-radius: 0 6px 0 0; box-sizing: border-box; flex-shrink: 0;
-  border: 3px solid chocolate; }
+{ width: 42px; background-color: black; padding: 10px; display: flex;
+  justify-content: center; align-items: center; height: 36px;
+  border-radius: 0 7px 0 0; box-sizing: border-box; flex-shrink: 0;
+  border: 3px solid chocolate; overflow: hidden; position: relative; }
 
+.headlink
+{ display: flex; justify-content: center; align-items: center; width: 100%;
+  height: 100%; }
 .headlink img
-{ transition: transform 0.3s ease; width: 22px; height: auto; }
+{ transition: transform 0.1s ease; width: auto; height: auto; object-fit: contain;
+  max-width: 150%; max-height: 150%; transform: scale(1.9); }
+.headlink:hover img
+{ transform: scale(2.2); }
 
 #maincont
 { min-height: 200px; background-color: black; padding: 15px; color: gray;
   box-sizing: border-box; border: 3px solid #545454; }
 #foottape
 { height: 40px; background-color: black; padding: 15px; color: chocolate;
-  border-radius: 0 0 6px 6px; box-sizing: border-box; margin-bottom: 7px;
+  border-radius: 0 0 7px 7px; box-sizing: border-box; margin-bottom: 7px;
   border: 3px solid chocolate; }
 
   /* scrollup styles */
