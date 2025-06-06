@@ -6,13 +6,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="../styles/mainstyle.css">
+  <link rel="stylesheet" type="text/css" href="../styles/menustyle.css">
   <script type="text/javascript" src="../scripts/jquery-1.12.4.min.js"></script>
-  <script type="text/javascript" src="../scripts/scroll.script.js"></script>
+  <script type="text/javascript" src="../scripts/scroll.script.js" defer></script>
+  <script type="text/javascript" src="../scripts/menu.script.js" defer></script>
+  <script type="text/javascript" src="../scripts/pages.script.js" defer></script>
   <!-- metatags end -->
 
   <title></title>
 
-</<head>
+</head>
 
 <body>
 
@@ -28,14 +31,37 @@
           </a>
         </div>
         <div id="srchline">Поиск</div>
-        <div id="mainmenu">Главное меню</div>
+        <div id="mainmenu">
+          <div class="menulist">
+            <div class="mainline">Раздел 1</div>
+            <div class="sublines">
+              <div class="art-link">
+                <a href="page1.html" data-page="page1.html" class="menulink">Статья 1.1</a>
+              </div>
+              <div class="art-link">
+                <a href="#" data-page="page2.html" class="menulink">Статья 1.2</a>
+              </div>
+            </div>
+          </div>
+          <div class="menulist">
+            <div class="mainline">Раздел 2</div>
+            <div class="sublines">
+              <div class="art-link">
+                <a href="#" data-page="page3.html" class="menulink">Статья 2.1</a>
+              </div>
+              <div class="art-link">
+                <a href="#" data-page="page4.html" class="menulink">Статья 2.2</a>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
 
             <!-- Правый столбец -->
       <div class="blocktwo">
         <div id="headtape">
           <div class="headhome">
-            <a href="#" class="headlink">
+            <a href="index.html" class="headlink">
               <img src="../images/home.png">
             </a>
           </div>
@@ -59,5 +85,6 @@
 
   <div class="scrollup">
     <img src="../images/arrow.png" width="40" height="40" style="cursor: pointer;">
+  </div>
 </body>
 </html>

@@ -26,8 +26,7 @@ body
 { height: 34px; background-color: black; border: 1px solid #545454; padding: 5px;
   box-sizing: border-box;}
 #mainmenu
-{ background-color: black; border-radius: 0 0 7px 7px; padding: 15px;
-  box-sizing: border-box; border: 2px solid #545454; }
+{ box-sizing: border-box; display: flex; flex-direction: column; gap: 7px; }
 
 #headtape
 { display: flex; flex-direction: row; gap: 7px; padding: 0; height: 36px;
@@ -38,13 +37,13 @@ body
   border-radius: 7px 0 0 0; box-sizing: border-box; flex-shrink: 0;
   border: 3px solid chocolate; overflow: hidden; position: relative; }
 .headline
-{ width: 411px; background-color: black; padding: 10px; color: chocolate;
+{ width: 413px; background-color: black; padding: 10px; color: chocolate;
   box-sizing: border-box; flex-shrink: 0; border: 3px solid chocolate; }
 .headuser
 { width: 200px; background-color: black; padding: 10px; color: chocolate;
   box-sizing: border-box; flex-shrink: 0; border: 3px solid chocolate; }
 .headexit
-{ width: 42px; background-color: black; padding: 10px; display: flex;
+{ width: 40px; background-color: black; padding: 10px; display: flex;
   justify-content: center; align-items: center; height: 36px;
   border-radius: 0 7px 0 0; box-sizing: border-box; flex-shrink: 0;
   border: 3px solid chocolate; overflow: hidden; position: relative; }

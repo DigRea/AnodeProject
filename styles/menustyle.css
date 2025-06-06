@@ -1,0 +1,19 @@
+
+.menulist
+{ background-color: black; border: 2px solid #545454; overflow: hidden; }
+.mainline
+{ padding: 10px 15px; cursor: pointer; color: #b5b5b5; transition: color 0.3s; }
+.mainline:hover
+{ color: white; }
+.sublines
+{ display: none; flex-direction: column; padding: 5px 15px 10px; gap: 5px; }
+.sublines a
+{ color: #b5b5b5; text-decoration: none; padding: 5px 10px; transition: color 0.3s; }
+.sublines a:hover
+{ color: white; }
+.mainline.active
+{ color: white; }
+.menulink.active
+{ color: white !important; }
+.art-link
+{ padding: 6px 0; }
