@@ -33,9 +33,10 @@ body
 { display: flex; flex-direction: row; gap: 7px; padding: 0; height: 36px;
   background-color: transparent !important; }
 .headhome
-{ width: 42px; background-color: black; padding: 10px;
+{ width: 42px; background-color: black; padding: 10px; display: flex;
+  justify-content: center; align-items: center; height: 36px;
   border-radius: 6px 0 0 0; box-sizing: border-box; flex-shrink: 0;
-  border: 3px solid chocolate;}
+  border: 3px solid chocolate; }
 .headline
 { width: 411px; background-color: black; padding: 10px; color: chocolate;
   box-sizing: border-box; flex-shrink: 0; border: 3px solid chocolate; }
@@ -46,6 +47,9 @@ body
 { width: 42px; background-color: black; padding: 10px;
   border-radius: 0 6px 0 0; box-sizing: border-box; flex-shrink: 0;
   border: 3px solid chocolate; }
+
+.headlink img
+{ transition: transform 0.3s ease; width: 22px; height: auto; }
 
 #maincont
 { min-height: 200px; background-color: black; padding: 15px; color: gray;
