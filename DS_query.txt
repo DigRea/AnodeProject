@@ -1,0 +1,12 @@
+Есть код сайта:
+
+/pages/index.html:
+
+
+/pages/page1.html:
+
+
+/styles/mainstyle.css:
+
+
+/scripts/engine.script.js:

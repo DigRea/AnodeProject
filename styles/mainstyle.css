@@ -1,0 +1,107 @@
+/* mainstyles */
+
+body
+{ background: url(../images/bgnc.png) fixed black top center no-repeat;
+  background-size: cover; overflow: scroll; }
+@font-face
+{ src: url("../fonts/play.ttf") format('truetype');
+  font-weight: normal; font-family: 'Play'; }
+@font-face
+{ src: url("../fonts/anonymous.ttf") format('truetype');
+  font-weight: normal; font-family: 'Anonymous'; }
+#outblock
+{ position: absolute; height: auto; width: 99%; }
+#innblock
+{ width: 998px; text-align: left; height: 100%; position: relative;
+  -moz-user-select: none; -webkit-user-select: none; user-select: none;
+  -ms-user-select: none; -o-user-select: none; display: flex; gap: 13px; }
+
+.blockone
+{ display: flex; flex-direction: column; width: 268px; gap: 7px;
+  box-sizing: border-box; }
+.blocktwo
+{ display: flex; flex-direction: column; width: 717px; gap: 7px;
+  box-sizing: border-box; }
+#sitelogo
+{ height: 115px;  border-radius: 5px; padding: 15px 5px; box-sizing: border-box;}
+#srchline
+{ height: 34px; background-color: black; border: 1px solid #545454; padding: 5px;
+  box-sizing: border-box;}
+
+
+#mainmenu {
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+#maincont {
+  min-height: 200px;
+  background-color: black;
+  padding: 15px;
+  color: gray;
+  box-sizing: border-box;
+  border: 3px solid #545454;
+}
+
+.scrollup {
+  position: fixed;
+  bottom: 28px;
+  right: 30px;
+  display: none;
+  z-index: 1000;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  -o-user-select: none;
+  -ms-user-select: none;
+}
+
+.menu-section {
+  background-color: rgba(40, 40, 40, 0.9);
+  border: 1px solid #545454;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.section-title {
+  padding: 10px;
+  cursor: pointer;
+  color: #ccc;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+.section-title:hover {
+  background-color: rgba(60, 60, 60, 0.9);
+}
+
+.section-content {
+  display: none;
+  flex-direction: column;
+  padding: 0;
+}
+
+.section-content a {
+  display: block;
+  padding: 8px 10px;
+  color: #999;
+  text-decoration: none;
+  transition: color 0.3s;
+}
+
+.section-content a:hover {
+  color: #ddd;
+  background-color: rgba(60, 60, 60, 0.6);
+}
+
+.active-section {
+  color: #fff !important;
+}
+
+.active-article {
+  color: #fff !important;
+  font-weight: bold;
+  background-color: rgba(80, 80, 80, 0.6);
+}
