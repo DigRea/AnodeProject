@@ -6,7 +6,6 @@ $(function() {
 
     // Функция для нормализации пути статьи
     function normalizeArticlePath(path) {
-        // Удаляем начальные /pages/ если они есть
         return path.replace(/^\/?pages\//, '');
     }
 
@@ -23,22 +22,22 @@ $(function() {
             history.replaceState({}, '', getArticleFullUrl('mainpage.html'));
         }
         else if (!currentPath.startsWith(FULL_PAGES_PATH)) {
-            // Перенаправляем на корректный URL если открыли статью напрямую
             const articleName = currentPath.split('/').pop();
             history.replaceState({}, '', getArticleFullUrl(articleName));
         }
     }
     ensureCorrectInitialUrl();
 
-    // Обработчики прокрутки (без изменений)
+    // Обработчики прокрутки
     $(window).scroll(function() {
         $('.scrollup').toggle($(this).scrollTop() > 0);
     });
+
     $('.scrollup').click(function() {
         $('body, html').animate({scrollTop: 0}, 300);
     });
 
-    // Обработка меню (без изменений)
+    // Обработка меню
     $('.mainline').click(function() {
         var $content = $(this).next('.sublines');
         var isOpening = !$content.is(':visible');
@@ -54,32 +53,30 @@ $(function() {
         }
     });
 
-    // Основная функция загрузки статьи
+    // Основная функция загрузки статьи с плавными переходами
     function loadArticleContent(articleName, $link) {
         const fullUrl = getArticleFullUrl(articleName);
-        const currentHeight = $('#maincont').height();
 
-        $('#maincont').css({
-            'min-height': currentHeight + 'px',
-            'opacity': 0.5
+        // Плавное исчезновение текущего контента
+        $('#maincont').animate({opacity: 0}, 200, function() {
+            $.get(fullUrl)
+                .done(function(data) {
+                    const tempDiv = $('<div>').html(data);
+                    const content = tempDiv.find('#maincont').html();
+
+                    // Устанавливаем новое содержимое и плавно показываем
+                    $('#maincont').html(content).animate({opacity: 1}, 200);
+
+                    // Обновляем историю и активные элементы
+                    history.pushState({article: articleName}, '', fullUrl);
+                    updateActiveState($link);
+                })
+                .fail(function() {
+                    // В случае ошибки возвращаем прозрачность
+                    $('#maincont').animate({opacity: 1}, 200);
+                    showError('Статья не найдена');
+                });
         });
-
-        $.get(fullUrl)
-            .done(function(data) {
-                const tempDiv = $('<div>').html(data);
-                const content = tempDiv.find('#maincont').html();
-
-                $('#maincont').html(content)
-                    .css('min-height', 'auto')
-                    .animate({opacity: 1}, 300);
-
-                // Сохраняем в истории только относительный путь
-                history.pushState({article: articleName}, '', fullUrl);
-                updateActiveState($link);
-            })
-            .fail(function() {
-                showError('Статья не найдена');
-            });
     }
 
     // Обработчик кликов по ссылкам в меню
@@ -114,8 +111,7 @@ $(function() {
                           normalizeArticlePath(location.pathname.split('/').pop());
 
         if (articleName === 'mainpage.html') {
-            $('#maincont').empty();
-            resetActiveState();
+            loadMainPage();
         }
         else if (articleName.match(/page\d+\.html/)) {
             loadArticle(articleName);
@@ -135,12 +131,18 @@ $(function() {
         resetActiveState();
     }
 
+    function loadMainPage() {
+        $('#maincont').animate({opacity: 0}, 200, function() {
+            $(this).empty().animate({opacity: 1}, 200);
+        });
+        resetActiveState();
+    }
+
     function loadInitialArticle(articleName) {
         const $activeLink = $('.menulink[href="' + articleName + '"]');
         if ($activeLink.length) {
             updateActiveState($activeLink);
         }
-        $('#maincont').css('opacity', 1);
     }
 
     function updateActiveState($link) {
@@ -156,11 +158,12 @@ $(function() {
     function resetActiveState() {
         $('.mainline').removeClass('actlines');
         $('.menulink').removeClass('actlinks');
+        $('.sublines').hide();
     }
 
     function scrollToArticle(articleName) {
         if ($(window).scrollTop() > 0) {
-            $('body, html').animate({scrollTop: 0}, 400, function() {
+            $('body, html').animate({scrollTop: 0}, 300, function() {
                 $('.menulink[href="' + articleName + '"]').click();
             });
         } else {
@@ -170,29 +173,24 @@ $(function() {
 
     function loadArticle(articleName) {
         const fullUrl = getArticleFullUrl(articleName);
-        const currentHeight = $('#maincont').height();
 
-        $('#maincont').css({
-            'min-height': currentHeight + 'px',
-            'opacity': 0.5
+        $('#maincont').animate({opacity: 0}, 200, function() {
+            $.get(fullUrl)
+                .done(function(data) {
+                    const tempDiv = $('<div>').html(data);
+                    const content = tempDiv.find('#maincont').html();
+
+                    $('#maincont').html(content).animate({opacity: 1}, 200);
+
+                    const $activeLink = $('.menulink[href="' + articleName + '"]');
+                    if ($activeLink.length) {
+                        updateActiveState($activeLink);
+                    }
+                })
+                .fail(function() {
+                    $('#maincont').animate({opacity: 1}, 200);
+                    showError('Статья не найдена');
+                });
         });
-
-        $.get(fullUrl)
-            .done(function(data) {
-                const tempDiv = $('<div>').html(data);
-                const content = tempDiv.find('#maincont').html();
-
-                $('#maincont').html(content)
-                    .css('min-height', 'auto')
-                    .animate({opacity: 1}, 300);
-
-                const $activeLink = $('.menulink[href="' + articleName + '"]');
-                if ($activeLink.length) {
-                    updateActiveState($activeLink);
-                }
-            })
-            .fail(function() {
-                showError('Статья не найдена');
-            });
     }
 });

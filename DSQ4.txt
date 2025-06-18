@@ -1,0 +1,387 @@
+Есть код сайта:
+
+/index.html:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="refresh" content="0; url=pages/mainpage.html" />
+</head>
+<body>
+</body>
+</html>
+
+/pages/mainpage.html:
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+
+  <!-- metatags start -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" type="text/css" href="../styles/mainstyle.css">
+  <script src="../scripts/jquery-3.6.0.min.js"></script>
+  <script src="../scripts/engine.script.js"></script>
+  <!-- metatags end -->
+
+  <title></title>
+</head>
+
+<body>
+  <div id="outblock" align="center">
+    <div id="innblock">
+      <div class="blockone">
+
+        <!-- logo & search start -->
+        <div id="sitelogo">
+          <a href="https://digrea.pro" style="outline: none;">
+            <div>
+              <img src="../images/drpi.png" align="center" style="width: 256px; pointer-events: none;" />
+            </div>
+          </a>
+        </div>
+        <div id="srchline">Поиск</div>
+        <!-- logo & search end -->
+
+        <!-- mainmenu start -->
+        <div id="mainmenu">
+          <div class="menulist">
+            <div class="mainline">Simple Servers</div>
+            <div class="sublines">
+              <a href="page1.html" class="menulink"><b style="color: chocolate; font-weight: 900">&#10003;&nbsp;&nbsp;&nbsp;</b>DHCP-сервер isc-dhcp-server</a>
+              <a href="page2.html" class="menulink"><b style="color: chocolate; font-weight: 900">&#10003;&nbsp;&nbsp;&nbsp;</b>NFS-сервер на Debian</a>
+            </div>
+          </div>
+          <div class="menulist">
+            <div class="mainline">Unplagged</div>
+            <div class="sublines">
+              <a href="#" class="menulink"><b style="color: chocolate; font-weight: 900">&#10003;&nbsp;&nbsp;&nbsp;</b>APCUPSd. Мониторинг ИБП</a>
+              <a href="#" class="menulink"><b style="color: chocolate; font-weight: 900">&#10003;&nbsp;&nbsp;&nbsp;</b>Сервис rc.local в Debian</a>
+            </div>
+          </div>
+          <div class="menulist" style="border-radius: 0 0 7px 7px">
+            <div class="mainline">Архивные статьи</div>
+            <div class="sublines" >
+              <a href="#" class="menulink"><b style="color: chocolate; font-weight: 900">&#10003;&nbsp;&nbsp;&nbsp;</b>Кэширующий DNS-сервер pdnsd</a>
+            </div>
+          </div>
+        </div>
+        <!-- mainmenu end -->
+
+      </div>
+      <div class="blocktwo">
+
+        <!-- maincont start -->
+        <div id="maincont">
+          <p>Главная страница</p>
+        </div>
+        <!-- maincont end -->
+
+      </div>
+      <div class="scrollup">
+        <img src="../images/arrow.png" width="40" height="40" style="cursor: pointer;">
+      </div>
+    </div>
+  </div>
+</body>
+</html>
+
+/styles/mainstyle.css:
+
+/* mainstyles */
+
+body
+{ background: url(../images/bgnc.png) fixed black top center no-repeat;
+  background-size: cover; overflow: scroll; }
+@font-face
+{ src: url("../fonts/play.ttf") format('truetype');
+  font-weight: normal; font-family: 'Play'; }
+@font-face
+{ src: url("../fonts/anonymous.ttf") format('truetype');
+  font-weight: normal; font-family: 'Anonymous'; }
+#outblock
+{ position: absolute; height: auto; width: 99%; }
+#innblock
+{ width: 998px; text-align: left; height: 100%; position: relative;
+  -moz-user-select: none; -webkit-user-select: none; user-select: none;
+  -ms-user-select: none; -o-user-select: none; display: flex; gap: 13px; }
+.blockone
+{ display: flex; flex-direction: column; width: 268px; gap: 7px;
+  box-sizing: border-box; }
+.blocktwo
+{ display: flex; flex-direction: column; width: 717px; gap: 7px;
+  box-sizing: border-box; }
+#sitelogo
+{ height: 115px;  border-radius: 5px; padding: 15px 5px; box-sizing: border-box;}
+#srchline
+{ height: 34px; background-color: black; border: 1px solid #545454; padding: 5px;
+  box-sizing: border-box; }
+#mainmenu
+{ box-sizing: border-box; display: flex; flex-direction: column; gap: 5px; }
+#maincont
+{ min-height: 200px; background-color: black; padding: 15px; color: gray;
+  box-sizing: border-box; border: 3px solid #545454; }
+.scrollup
+{ position: fixed; bottom: 28px; right: 30px; display: none; z-index: 1000;
+  -webkit-user-select: none; -moz-user-select: none; user-select: none;
+  -o-user-select: none; -ms-user-select: none; }
+
+.menulist
+{ background-color: black; font-family: Play; border: 2px solid #545454;
+  overflow: hidden; }
+
+.menulist:hover
+{ border: 2px solid chocolate; }
+
+.mainline {
+  padding: 8px; font-size: 16px;
+  cursor: pointer;
+  color: #b5b5b5;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+
+
+.sublines {
+  display: none; font-size: 14px;
+  flex-direction: column;
+  padding: 0;
+}
+
+.sublines a
+{ display: block; padding: 1px 5px 8px 10px; text-decoration: none;
+  color: #b5b5b5; transition: color 0.3s; }
+
+.sublines a:hover
+{ color: white; }
+
+.actlines {
+  color: #fff !important;
+}
+
+.actlinks {
+  color: #fff !important;
+  font-weight: bold;
+}
+
+/scripts/engine.script.js:
+
+$(function() {
+    // Константы путей
+    const BASE_PATH = '/';
+    const PAGES_DIR = 'pages/';
+    const FULL_PAGES_PATH = BASE_PATH + PAGES_DIR;
+
+    // Функция для нормализации пути статьи
+    function normalizeArticlePath(path) {
+        // Удаляем начальные /pages/ если они есть
+        return path.replace(/^\/?pages\//, '');
+    }
+
+    // Функция для получения полного URL статьи
+    function getArticleFullUrl(articleName) {
+        return FULL_PAGES_PATH + articleName;
+    }
+
+    // Корректировка начального URL
+    function ensureCorrectInitialUrl() {
+        const currentPath = location.pathname;
+
+        if (currentPath === BASE_PATH || currentPath.endsWith('index.html')) {
+            history.replaceState({}, '', getArticleFullUrl('mainpage.html'));
+        }
+        else if (!currentPath.startsWith(FULL_PAGES_PATH)) {
+            // Перенаправляем на корректный URL если открыли статью напрямую
+            const articleName = currentPath.split('/').pop();
+            history.replaceState({}, '', getArticleFullUrl(articleName));
+        }
+    }
+    ensureCorrectInitialUrl();
+
+    // Обработчики прокрутки (без изменений)
+    $(window).scroll(function() {
+        $('.scrollup').toggle($(this).scrollTop() > 0);
+    });
+    $('.scrollup').click(function() {
+        $('body, html').animate({scrollTop: 0}, 300);
+    });
+
+    // Обработка меню (без изменений)
+    $('.mainline').click(function() {
+        var $content = $(this).next('.sublines');
+        var isOpening = !$content.is(':visible');
+
+        if (isOpening) {
+            $('.sublines').not($content).slideUp(300);
+            $('.mainline').not(this).removeClass('actlines');
+            $content.slideDown(300);
+            $(this).addClass('actlines');
+        } else {
+            $content.slideUp(300);
+            $(this).removeClass('actlines');
+        }
+    });
+
+    // Основная функция загрузки статьи
+    function loadArticleContent(articleName, $link) {
+        const fullUrl = getArticleFullUrl(articleName);
+        const currentHeight = $('#maincont').height();
+
+        $('#maincont').css({
+            'min-height': currentHeight + 'px',
+            'opacity': 0.5
+        });
+
+        $.get(fullUrl)
+            .done(function(data) {
+                const tempDiv = $('<div>').html(data);
+                const content = tempDiv.find('#maincont').html();
+
+                $('#maincont').html(content)
+                    .css('min-height', 'auto')
+                    .animate({opacity: 1}, 300);
+
+                // Сохраняем в истории только относительный путь
+                history.pushState({article: articleName}, '', fullUrl);
+                updateActiveState($link);
+            })
+            .fail(function() {
+                showError('Статья не найдена');
+            });
+    }
+
+    // Обработчик кликов по ссылкам в меню
+    $('.menulink').click(function(e) {
+        e.preventDefault();
+        const articleName = normalizeArticlePath($(this).attr('href'));
+
+        if (location.pathname === getArticleFullUrl(articleName)) {
+            $('body, html').animate({scrollTop: 0}, 400);
+            return;
+        }
+
+        loadArticleContent(articleName, $(this));
+    });
+
+    // Обработчик внутренних ссылок в статьях
+    $(document).on('click', '#maincont a', function(e) {
+        e.preventDefault();
+        const targetUrl = $(this).attr('href');
+        const articleName = normalizeArticlePath(targetUrl);
+
+        if (targetUrl.match(/page\d+\.html/)) {
+            scrollToArticle(articleName);
+        } else {
+            window.location.href = targetUrl;
+        }
+    });
+
+    // Обработка навигации по истории
+    $(window).on('popstate', function(e) {
+        const articleName = e.originalEvent.state?.article ||
+                          normalizeArticlePath(location.pathname.split('/').pop());
+
+        if (articleName === 'mainpage.html') {
+            $('#maincont').empty();
+            resetActiveState();
+        }
+        else if (articleName.match(/page\d+\.html/)) {
+            loadArticle(articleName);
+        }
+    });
+
+    // Инициализация при загрузке
+    const initialArticle = normalizeArticlePath(location.pathname.split('/').pop());
+    if (initialArticle.match(/page\d+\.html/)) {
+        loadInitialArticle(initialArticle);
+    }
+
+    // Вспомогательные функции
+    function showError(message) {
+        $('#maincont').html('<p style="color:red;">' + message + '</p>');
+        history.replaceState({}, '', getArticleFullUrl('mainpage.html'));
+        resetActiveState();
+    }
+
+    function loadInitialArticle(articleName) {
+        const $activeLink = $('.menulink[href="' + articleName + '"]');
+        if ($activeLink.length) {
+            updateActiveState($activeLink);
+        }
+        $('#maincont').css('opacity', 1);
+    }
+
+    function updateActiveState($link) {
+        resetActiveState();
+        $link.addClass('actlinks')
+             .closest('.menulist')
+             .find('.mainline')
+             .addClass('actlines')
+             .next('.sublines')
+             .show();
+    }
+
+    function resetActiveState() {
+        $('.mainline').removeClass('actlines');
+        $('.menulink').removeClass('actlinks');
+    }
+
+    function scrollToArticle(articleName) {
+        if ($(window).scrollTop() > 0) {
+            $('body, html').animate({scrollTop: 0}, 400, function() {
+                $('.menulink[href="' + articleName + '"]').click();
+            });
+        } else {
+            $('.menulink[href="' + articleName + '"]').click();
+        }
+    }
+
+    function loadArticle(articleName) {
+        const fullUrl = getArticleFullUrl(articleName);
+        const currentHeight = $('#maincont').height();
+
+        $('#maincont').css({
+            'min-height': currentHeight + 'px',
+            'opacity': 0.5
+        });
+
+        $.get(fullUrl)
+            .done(function(data) {
+                const tempDiv = $('<div>').html(data);
+                const content = tempDiv.find('#maincont').html();
+
+                $('#maincont').html(content)
+                    .css('min-height', 'auto')
+                    .animate({opacity: 1}, 300);
+
+                const $activeLink = $('.menulink[href="' + articleName + '"]');
+                if ($activeLink.length) {
+                    updateActiveState($activeLink);
+                }
+            })
+            .fail(function() {
+                showError('Статья не найдена');
+            });
+    }
+});
+
+/pages/page1.html:
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" type="text/css" href="../styles/mainstyle.css">
+</head>
+<body>
+  <div id="maincont">
+    <h2>Статья 1</h2>
+    <p>Содержимое статьи 1...</p>
+    <p>Читайте также: <a href="page2.html">Статья 2</a></p>
+  </div>
+</body>
+</html>
+
+При клике по ссылке в меню блок с контентом (#maincont) на мгновение пропадает, потом появляется с контентом страницы. Как убрать это "пропадание"? Может, обернуть его в другой блок с определённой минимальной высотой? 

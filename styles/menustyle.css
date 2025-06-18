@@ -1,0 +1,38 @@
+.menulist
+{ background-color: black; font-family: Play; border: 2px solid #545454;
+  overflow: hidden; }
+
+.menulist:hover
+{ border: 2px solid chocolate; }
+
+.mainline {
+  padding: 8px; font-size: 16px;
+  cursor: pointer;
+  color: #b5b5b5;
+  font-weight: bold;
+  transition: background-color 0.3s;
+}
+
+
+
+.sublines {
+  display: none; font-size: 14px;
+  flex-direction: column;
+  padding: 0;
+}
+
+.sublines a
+{ display: block; padding: 1px 5px 8px 10px; text-decoration: none;
+  color: #b5b5b5; transition: color 0.3s; }
+
+.sublines a:hover
+{ color: white; }
+
+.actlines {
+  color: #fff !important;
+}
+
+.actlinks {
+  color: #fff !important;
+  font-weight: bold;
+}

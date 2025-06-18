@@ -1,0 +1,28 @@
+.scrollup
+{ position: fixed; bottom: 28px; right: 30px; display: none; z-index: 1000;
+  -webkit-user-select: none; -moz-user-select: none; user-select: none;
+  -o-user-select: none; -ms-user-select: none; }
+.headhome
+{ width: 42px; background-color: black; padding: 10px; display: flex;
+  justify-content: center; align-items: center; height: 36px;
+  border-radius: 7px 0 0 0; box-sizing: border-box; flex-shrink: 0;
+  border: 3px solid chocolate; overflow: hidden; position: relative; }
+.headline
+{ width: 413px; background-color: black; padding: 10px; color: chocolate;
+  box-sizing: border-box; flex-shrink: 0; border: 3px solid chocolate; }
+.headuser
+{ width: 200px; background-color: black; padding: 10px; color: chocolate;
+  box-sizing: border-box; flex-shrink: 0; border: 3px solid chocolate; }
+.headexit
+{ width: 40px; background-color: black; padding: 10px; display: flex;
+  justify-content: center; align-items: center; height: 36px;
+  border-radius: 0 7px 0 0; box-sizing: border-box; flex-shrink: 0;
+  border: 3px solid chocolate; overflow: hidden; position: relative; }
+.headlink
+{ display: flex; justify-content: center; align-items: center; width: 100%;
+  height: 100%; }
+.headlink img
+{ transition: transform 0.1s ease; width: auto; height: auto; object-fit: contain;
+  max-width: 150%; max-height: 150%; transform: scale(1.9); }
+.headlink:hover img
+{ transform: scale(2.2); }
