@@ -1,0 +1,20 @@
+Есть код сайта:
+
+/index.html:
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta http-equiv="refresh" content="0; url=pages/mainpage.html" />
+</head>
+<body>
+</body>
+</html>
+
+/pages/mainpage.html:
+
+/styles/mainstyle.css:
+
+/scripts/engine.script.js:
+
+/pages/page1.html:

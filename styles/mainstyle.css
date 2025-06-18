@@ -15,7 +15,6 @@ body
 { width: 998px; text-align: left; height: 100%; position: relative;
   -moz-user-select: none; -webkit-user-select: none; user-select: none;
   -ms-user-select: none; -o-user-select: none; display: flex; gap: 13px; }
-
 .blockone
 { display: flex; flex-direction: column; width: 268px; gap: 7px;
   box-sizing: border-box; }
@@ -27,81 +26,51 @@ body
 #srchline
 { height: 34px; background-color: black; border: 1px solid #545454; padding: 5px;
   box-sizing: border-box;}
+#mainmenu
+{ box-sizing: border-box; display: flex; flex-direction: column; gap: 5px; }
+#maincont
+{ min-height: 200px; background-color: black; padding: 15px; color: gray;
+  box-sizing: border-box; border: 3px solid #545454; }
+.scrollup
+{ position: fixed; bottom: 28px; right: 30px; display: none; z-index: 1000;
+  -webkit-user-select: none; -moz-user-select: none; user-select: none;
+  -o-user-select: none; -ms-user-select: none; }
 
+.menulist
+{ background-color: black; font-family: Play; border: 2px solid #545454;
+  overflow: hidden; }
 
-#mainmenu {
-  box-sizing: border-box;
-  display: flex;
-  flex-direction: column;
-  gap: 7px;
-}
+.menulist:hover
+{ border: 2px solid chocolate; }
 
-#maincont {
-  min-height: 200px;
-  background-color: black;
-  padding: 15px;
-  color: gray;
-  box-sizing: border-box;
-  border: 3px solid #545454;
-}
-
-.scrollup {
-  position: fixed;
-  bottom: 28px;
-  right: 30px;
-  display: none;
-  z-index: 1000;
-  -webkit-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
-  -o-user-select: none;
-  -ms-user-select: none;
-}
-
-.menu-section {
-  background-color: rgba(40, 40, 40, 0.9);
-  border: 1px solid #545454;
-  border-radius: 4px;
-  overflow: hidden;
-}
-
-.section-title {
-  padding: 10px;
+.mainline {
+  padding: 8px; font-size: 16px;
   cursor: pointer;
-  color: #ccc;
+  color: #b5b5b5;
   font-weight: bold;
   transition: background-color 0.3s;
 }
 
-.section-title:hover {
-  background-color: rgba(60, 60, 60, 0.9);
-}
 
-.section-content {
-  display: none;
+
+.sublines {
+  display: none; font-size: 14px;
   flex-direction: column;
   padding: 0;
 }
 
-.section-content a {
-  display: block;
-  padding: 8px 10px;
-  color: #999;
-  text-decoration: none;
-  transition: color 0.3s;
-}
+.sublines a
+{ display: block; padding: 1px 5px 8px 10px; text-decoration: none;
+  color: #b5b5b5; transition: color 0.3s; }
 
-.section-content a:hover {
-  color: #ddd;
-  background-color: rgba(60, 60, 60, 0.6);
-}
+.sublines a:hover
+{ color: white; }
 
-.active-section {
+.actlines {
   color: #fff !important;
 }
 
-.active-article {
+.actlinks {
   color: #fff !important;
   font-weight: bold;
-  background-color: rgba(80, 80, 80, 0.6);
 }
