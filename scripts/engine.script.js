@@ -2,7 +2,7 @@ $(function() {
     // Установка корректного URL при загрузке
     function ensureCorrectInitialUrl() {
         if (location.pathname === '/' || !location.pathname.includes('/pages/')) {
-            history.replaceState(null, null, '/pages/index.html');
+            history.replaceState({}, null, '/pages/index.html');
         }
     }
     ensureCorrectInitialUrl();
@@ -19,40 +19,38 @@ $(function() {
 
     // Обработка меню - закрытие других разделов
     $('.section-title').click(function() {
-        $('.section-content').not($(this).next()).slideUp(300);
-        $(this).next('.section-content').slideToggle(300);
+        var $content = $(this).next('.section-content');
+        var isOpening = !$content.is(':visible');
+
+        $('.section-content').not($content).slideUp(300);
+        $('.section-title').not(this).removeClass('active-section');
+
+        if (isOpening) {
+            $content.slideDown(300);
+            $(this).addClass('active-section');
+        } else {
+            $(this).removeClass('active-section');
+        }
     });
 
     // Загрузка контента статей
     $('.article-link').click(function(e) {
         e.preventDefault();
         var articleUrl = $(this).attr('href');
-        var $link = $(this);
-        
-        $.ajax({
-            url: '/pages/' + articleUrl,
-            type: 'HEAD',
-            success: function() {
-                $('#maincont').hide().load('/pages/' + articleUrl + ' #maincont > *', function(response, status) {
-                    if (status === "error") {
-                        showError('Ошибка загрузки статьи');
-                    } else {
-                        $(this).fadeIn(300);
-                        updateActiveState($link, articleUrl);
-                    }
-                });
-            },
-            error: function() {
-                showError('Статья не найдена');
-            }
-        });
+
+        if (location.pathname.endsWith(articleUrl)) {
+            $('body, html').animate({scrollTop: 0}, 400);
+            return;
+        }
+
+        loadArticleContent(articleUrl, $(this));
     });
 
     // Обработка внутренних ссылок в статьях
     $(document).on('click', '#maincont a', function(e) {
         e.preventDefault();
         var targetUrl = $(this).attr('href');
-        
+
         if (targetUrl.match(/page\d+\.html/)) {
             scrollToArticle(targetUrl);
         } else {
@@ -64,10 +62,11 @@ $(function() {
     $(window).on('popstate', function() {
         var path = location.pathname;
         var page = path.split('/').pop();
-        
+
         if (page === 'index.html' || path.endsWith('/pages/')) {
-            resetContent();
-        } 
+            $('#maincont').empty();
+            resetActiveState();
+        }
         else if (page.match(/page\d+\.html/)) {
             loadArticle(page);
         }
@@ -81,13 +80,33 @@ $(function() {
 
     // Вспомогательные функции
     function showError(message) {
-        $('#maincont').html('<p>' + message + '</p>').fadeIn(300);
-        history.replaceState(null, null, '/pages/index.html');
-        resetActiveState();
+        $('#maincont').html('<p>' + message + '</p>');
+        history.replaceState({}, null, '/pages/index.html');
     }
 
-    function updateActiveState($link, url) {
-        history.pushState(null, null, '/pages/' + url);
+    function loadArticleContent(url, $link) {
+        // Сохраняем текущую высоту блока
+        var currentHeight = $('#maincont').height();
+        $('#maincont').css('min-height', currentHeight + 'px');
+
+        $.get('/pages/' + url, function(data) {
+            var $newContent = $(data).find('#maincont').html();
+
+            // Плавная замена контента
+            $('#maincont').html($newContent).css({
+                'opacity': 0,
+                'min-height': 'auto' // Сбрасываем min-height после загрузки
+            }).animate({opacity: 1}, 300);
+
+            history.pushState({}, null, '/pages/' + url);
+            updateActiveState($link);
+        }).fail(function() {
+            showError('Статья не найдена');
+            $('#maincont').css('min-height', 'auto');
+        });
+    }
+
+    function updateActiveState($link) {
         resetActiveState();
         $link.addClass('active-article')
              .closest('.menu-section')
@@ -102,11 +121,6 @@ $(function() {
         $('.article-link').removeClass('active-article');
     }
 
-    function resetContent() {
-        $('#maincont').empty();
-        resetActiveState();
-    }
-
     function scrollToArticle(targetUrl) {
         if ($(window).scrollTop() > 0) {
             $('body, html').animate({scrollTop: 0}, 400, function() {
@@ -118,23 +132,25 @@ $(function() {
     }
 
     function loadArticle(page) {
-        $.ajax({
-            url: '/pages/' + page,
-            type: 'HEAD',
-            success: function() {
-                $('#maincont').load('/pages/' + page + ' #maincont > *', function() {
-                    $('.article-link[href="' + page + '"]')
-                        .addClass('active-article')
-                        .closest('.menu-section')
-                        .find('.section-title')
-                        .addClass('active-section')
-                        .next('.section-content')
-                        .slideDown(300);
-                });
-            },
-            error: function() {
-                history.replaceState(null, null, '/pages/index.html');
+        // Сохраняем текущую высоту блока
+        var currentHeight = $('#maincont').height();
+        $('#maincont').css('min-height', currentHeight + 'px');
+
+        $.get('/pages/' + page, function(data) {
+            var $newContent = $(data).find('#maincont').html();
+
+            $('#maincont').html($newContent).css({
+                'opacity': 0,
+                'min-height': 'auto'
+            }).animate({opacity: 1}, 300);
+
+            var $activeLink = $('.article-link[href="' + page + '"]');
+            if ($activeLink.length) {
+                updateActiveState($activeLink);
             }
+        }).fail(function() {
+            history.replaceState({}, null, '/pages/index.html');
+            $('#maincont').empty().css('min-height', 'auto');
         });
     }
 });
