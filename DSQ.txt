@@ -13,8 +13,17 @@
 
 /pages/mainpage.html:
 
+
 /styles/mainstyle.css:
 
+
+/styles/menustyle.css:
+
+
+/styles/substyles.css:
+
+
 /scripts/engine.script.js:
+
 
 /pages/page1.html:

@@ -21,6 +21,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="../styles/mainstyle.css">
+  <link rel="stylesheet" type="text/css" href="../styles/menustyle.css">
+  <link rel="stylesheet" type="text/css" href="../styles/substyles.css">
   <script src="../scripts/jquery-3.6.0.min.js"></script>
   <script src="../scripts/engine.script.js"></script>
   <!-- metatags end -->
@@ -57,7 +59,7 @@
             <div class="mainline">Unplagged</div>
             <div class="sublines">
               <a href="#" class="menulink"><b style="color: chocolate; font-weight: 900">&#10003;&nbsp;&nbsp;&nbsp;</b>APCUPSd. Мониторинг ИБП</a>
-              <a href="#" class="menulink"><b style="color: chocolate; font-weight: 900">&#10003;&nbsp;&nbsp;&nbsp;</b>Сервис rc.local в Debian</a>
+              <a href="page2.html" class="menulink"><b style="color: chocolate; font-weight: 900">&#10003;&nbsp;&nbsp;&nbsp;</b>Сервис rc.local в Debian</a>
             </div>
           </div>
           <div class="menulist" style="border-radius: 0 0 7px 7px">
@@ -71,13 +73,26 @@
 
       </div>
       <div class="blocktwo">
-
+        <div id="headtape">
+          <div class="headhome">
+            <a href="mainpage.html" class="headlink">
+              <img src="../images/home.png">
+            </a>
+          </div>
+          <div class="headline">Блок 2</div>
+          <div class="headuser">Блок 3</div>
+          <div class="headexit">
+            <a href="#" class="headlink">
+              <img src="../images/exit.png">
+            </a>
+          </div>
+        </div>
         <!-- maincont start -->
         <div id="maincont">
           <p>Главная страница</p>
         </div>
         <!-- maincont end -->
-
+        <div id="foottape">Футер</div>
       </div>
       <div class="scrollup">
         <img src="../images/arrow.png" width="40" height="40" style="cursor: pointer;">
@@ -118,14 +133,20 @@ body
 { height: 34px; background-color: black; border: 1px solid #545454; padding: 5px;
   box-sizing: border-box; }
 #mainmenu
-{ box-sizing: border-box; display: flex; flex-direction: column; gap: 5px; }
+{ box-sizing: border-box; display: flex; flex-direction: column; gap: 5px;
+  margin-top: 16px; }
 #maincont
 { min-height: 200px; background-color: black; padding: 15px; color: gray;
-  box-sizing: border-box; border: 3px solid #545454; }
-.scrollup
-{ position: fixed; bottom: 28px; right: 30px; display: none; z-index: 1000;
-  -webkit-user-select: none; -moz-user-select: none; user-select: none;
-  -o-user-select: none; -ms-user-select: none; }
+  box-sizing: border-box; border: 3px solid #545454; transition: opacity 0.4s ease; }
+#headtape
+{ display: flex; flex-direction: row; gap: 7px; padding: 0; height: 36px;
+  background-color: transparent !important; }
+#foottape
+{ height: 40px; background-color: black; padding: 15px; color: chocolate;
+  border-radius: 0 0 7px 7px; box-sizing: border-box; margin-bottom: 7px;
+  border: 3px solid chocolate; }
+
+/styles/menustyle.css:
 
 .menulist
 { background-color: black; font-family: Play; border: 2px solid #545454;
@@ -166,6 +187,37 @@ body
   font-weight: bold;
 }
 
+/styles/substyles.css:
+
+.scrollup
+{ position: fixed; bottom: 28px; right: 30px; display: none; z-index: 1000;
+  -webkit-user-select: none; -moz-user-select: none; user-select: none;
+  -o-user-select: none; -ms-user-select: none; }
+.headhome
+{ width: 42px; background-color: black; padding: 10px; display: flex;
+  justify-content: center; align-items: center; height: 36px;
+  border-radius: 7px 0 0 0; box-sizing: border-box; flex-shrink: 0;
+  border: 3px solid chocolate; overflow: hidden; position: relative; }
+.headline
+{ width: 413px; background-color: black; padding: 10px; color: chocolate;
+  box-sizing: border-box; flex-shrink: 0; border: 3px solid chocolate; }
+.headuser
+{ width: 200px; background-color: black; padding: 10px; color: chocolate;
+  box-sizing: border-box; flex-shrink: 0; border: 3px solid chocolate; }
+.headexit
+{ width: 40px; background-color: black; padding: 10px; display: flex;
+  justify-content: center; align-items: center; height: 36px;
+  border-radius: 0 7px 0 0; box-sizing: border-box; flex-shrink: 0;
+  border: 3px solid chocolate; overflow: hidden; position: relative; }
+.headlink
+{ display: flex; justify-content: center; align-items: center; width: 100%;
+  height: 100%; }
+.headlink img
+{ transition: transform 0.1s ease; width: auto; height: auto; object-fit: contain;
+  max-width: 150%; max-height: 150%; transform: scale(1.9); }
+.headlink:hover img
+{ transform: scale(2.2); }
+
 /scripts/engine.script.js:
 
 $(function() {
@@ -176,7 +228,6 @@ $(function() {
 
     // Функция для нормализации пути статьи
     function normalizeArticlePath(path) {
-        // Удаляем начальные /pages/ если они есть
         return path.replace(/^\/?pages\//, '');
     }
 
@@ -193,22 +244,22 @@ $(function() {
             history.replaceState({}, '', getArticleFullUrl('mainpage.html'));
         }
         else if (!currentPath.startsWith(FULL_PAGES_PATH)) {
-            // Перенаправляем на корректный URL если открыли статью напрямую
             const articleName = currentPath.split('/').pop();
             history.replaceState({}, '', getArticleFullUrl(articleName));
         }
     }
     ensureCorrectInitialUrl();
 
-    // Обработчики прокрутки (без изменений)
+    // Обработчики прокрутки
     $(window).scroll(function() {
         $('.scrollup').toggle($(this).scrollTop() > 0);
     });
+
     $('.scrollup').click(function() {
         $('body, html').animate({scrollTop: 0}, 300);
     });
 
-    // Обработка меню (без изменений)
+    // Обработка меню
     $('.mainline').click(function() {
         var $content = $(this).next('.sublines');
         var isOpening = !$content.is(':visible');
@@ -224,32 +275,30 @@ $(function() {
         }
     });
 
-    // Основная функция загрузки статьи
+    // Основная функция загрузки статьи с плавными переходами
     function loadArticleContent(articleName, $link) {
         const fullUrl = getArticleFullUrl(articleName);
-        const currentHeight = $('#maincont').height();
 
-        $('#maincont').css({
-            'min-height': currentHeight + 'px',
-            'opacity': 0.5
+        // Плавное исчезновение текущего контента
+        $('#maincont').animate({opacity: 0}, 200, function() {
+            $.get(fullUrl)
+                .done(function(data) {
+                    const tempDiv = $('<div>').html(data);
+                    const content = tempDiv.find('#maincont').html();
+
+                    // Устанавливаем новое содержимое и плавно показываем
+                    $('#maincont').html(content).animate({opacity: 1}, 200);
+
+                    // Обновляем историю и активные элементы
+                    history.pushState({article: articleName}, '', fullUrl);
+                    updateActiveState($link);
+                })
+                .fail(function() {
+                    // В случае ошибки возвращаем прозрачность
+                    $('#maincont').animate({opacity: 1}, 200);
+                    showError('Статья не найдена');
+                });
         });
-
-        $.get(fullUrl)
-            .done(function(data) {
-                const tempDiv = $('<div>').html(data);
-                const content = tempDiv.find('#maincont').html();
-
-                $('#maincont').html(content)
-                    .css('min-height', 'auto')
-                    .animate({opacity: 1}, 300);
-
-                // Сохраняем в истории только относительный путь
-                history.pushState({article: articleName}, '', fullUrl);
-                updateActiveState($link);
-            })
-            .fail(function() {
-                showError('Статья не найдена');
-            });
     }
 
     // Обработчик кликов по ссылкам в меню
@@ -284,8 +333,7 @@ $(function() {
                           normalizeArticlePath(location.pathname.split('/').pop());
 
         if (articleName === 'mainpage.html') {
-            $('#maincont').empty();
-            resetActiveState();
+            loadMainPage();
         }
         else if (articleName.match(/page\d+\.html/)) {
             loadArticle(articleName);
@@ -305,12 +353,18 @@ $(function() {
         resetActiveState();
     }
 
+    function loadMainPage() {
+        $('#maincont').animate({opacity: 0}, 200, function() {
+            $(this).empty().animate({opacity: 1}, 200);
+        });
+        resetActiveState();
+    }
+
     function loadInitialArticle(articleName) {
         const $activeLink = $('.menulink[href="' + articleName + '"]');
         if ($activeLink.length) {
             updateActiveState($activeLink);
         }
-        $('#maincont').css('opacity', 1);
     }
 
     function updateActiveState($link) {
@@ -326,11 +380,12 @@ $(function() {
     function resetActiveState() {
         $('.mainline').removeClass('actlines');
         $('.menulink').removeClass('actlinks');
+        $('.sublines').hide();
     }
 
     function scrollToArticle(articleName) {
         if ($(window).scrollTop() > 0) {
-            $('body, html').animate({scrollTop: 0}, 400, function() {
+            $('body, html').animate({scrollTop: 0}, 300, function() {
                 $('.menulink[href="' + articleName + '"]').click();
             });
         } else {
@@ -340,30 +395,25 @@ $(function() {
 
     function loadArticle(articleName) {
         const fullUrl = getArticleFullUrl(articleName);
-        const currentHeight = $('#maincont').height();
 
-        $('#maincont').css({
-            'min-height': currentHeight + 'px',
-            'opacity': 0.5
+        $('#maincont').animate({opacity: 0}, 200, function() {
+            $.get(fullUrl)
+                .done(function(data) {
+                    const tempDiv = $('<div>').html(data);
+                    const content = tempDiv.find('#maincont').html();
+
+                    $('#maincont').html(content).animate({opacity: 1}, 200);
+
+                    const $activeLink = $('.menulink[href="' + articleName + '"]');
+                    if ($activeLink.length) {
+                        updateActiveState($activeLink);
+                    }
+                })
+                .fail(function() {
+                    $('#maincont').animate({opacity: 1}, 200);
+                    showError('Статья не найдена');
+                });
         });
-
-        $.get(fullUrl)
-            .done(function(data) {
-                const tempDiv = $('<div>').html(data);
-                const content = tempDiv.find('#maincont').html();
-
-                $('#maincont').html(content)
-                    .css('min-height', 'auto')
-                    .animate({opacity: 1}, 300);
-
-                const $activeLink = $('.menulink[href="' + articleName + '"]');
-                if ($activeLink.length) {
-                    updateActiveState($activeLink);
-                }
-            })
-            .fail(function() {
-                showError('Статья не найдена');
-            });
     }
 });
 
@@ -384,4 +434,9 @@ $(function() {
 </body>
 </html>
 
-При клике по ссылке в меню блок с контентом (#maincont) на мгновение пропадает, потом появляется с контентом страницы. Как убрать это "пропадание"? Может, обернуть его в другой блок с определённой минимальной высотой? 
+Что работает:
+При переходе по ссылкам меню подгружается страница и подсвечивается другим цветом
+шрифта соответствующий пункт меню (с раскрытием раздела меню, содержащего данную ссылку и закрытием остальных разделов).
+Что не работает:
+При переходе по ссылкам внутри блока #maincont, а также по ссылке на mainpage.html (<a href="mainpage.html" class="headlink">)
+меню раскрывается и закрывается мгновенно, а должно плавно.
