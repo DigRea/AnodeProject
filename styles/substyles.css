@@ -8,10 +8,10 @@
   border-radius: 7px 0 0 0; box-sizing: border-box; flex-shrink: 0;
   border: 3px solid chocolate; overflow: hidden; position: relative; }
 .headline
-{ width: 413px; background-color: black; padding: 10px; color: chocolate;
+{ width: 413px; background-color: black; padding: 4px 10px; color: chocolate; 
   box-sizing: border-box; flex-shrink: 0; border: 3px solid chocolate; }
 .headuser
-{ width: 200px; background-color: black; padding: 10px; color: chocolate;
+{ width: 200px; background-color: black; padding: 4px 10px; color: chocolate;
   box-sizing: border-box; flex-shrink: 0; border: 3px solid chocolate; }
 .headexit
 { width: 40px; background-color: black; padding: 10px; display: flex;
